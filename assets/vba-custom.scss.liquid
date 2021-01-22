@@ -1,0 +1,95 @@
+[data-section-type="vba-test-new-hero"]{
+  position: relative; 
+  .hero-background{
+    line-height: 0; 
+    img{
+      width: 100%;
+    }
+    .vba-hero-image{
+      &.desktop{
+        @media only screen and (max-width: 768px){
+          display: none; 
+        }
+      }
+      &.mobile{
+        display: none; 
+        @media only screen and (max-width: 768px){
+          display: block; 
+        }
+      }
+    }
+  }
+  .hero-overlay__wrapper{
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    display: flex; 
+    flex-wrap: wrap; 
+    align-items: center;
+    padding: 0 10%; 
+    &.overlay-align--middle{
+      justify-content: center;
+    }
+    &.overlay-align--right{
+      justify-content: flex-end;
+      @media only screen and (max-width: 768px){
+        justify-content: center; 
+      }
+    }
+    @media only screen and (max-width: 768px){
+      padding: 0 15px;
+      justify-content: center; 
+    }
+  }
+  .overlay-content{
+    max-width: 50%;
+    @media only screen and (max-width: 768px){
+      max-width: initial;
+    }
+    .overlay{
+      &.align-left{
+        text-align: left;
+      }
+      &.align-middle{
+        text-align: center; 
+      }
+      @media only screen and (max-width: 768px){
+        text-align: center!important;
+      } 
+      .hero-title{
+        color: #fff;
+        font-size: 46px; 
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        @media only screen and (max-width: 768px){
+          font-size: 36px;
+        } 
+      }
+      .hero-content{
+        color: #fff; 
+        font-size: 24px;
+        font-weight: 300;
+        @media only screen and (max-width: 768px){
+          font-size: 24px;
+        }  
+      }
+      .hero-btn{
+        background-color: #57AD68;
+        border-radius: 23px;
+        color: #fff; 
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 300;   
+        height: 45px; 
+        line-height: 45px;
+        padding: 0 30px; 
+        text-transform: upcase;
+        &:hover{
+          background-color: #57AD68
+        }
+      }
+    } 
+  }
+}

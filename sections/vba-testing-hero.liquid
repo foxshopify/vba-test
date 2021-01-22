@@ -1,0 +1,122 @@
+{%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+<div data-section-type="vba-test-new-hero" data-section-id="{{section.id}}">
+  <div class="hero-background">
+    {%- if section.settings.image != blank -%}
+      <img class="vba-hero-image desktop lazyload lazypreload"
+            data-src="{{ img_url }}"
+            data-widths="[180, 360, 470, 600, 770, 970, 1060, 1280, 1512, 1728, 2048]"
+            data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+            data-sizes="auto"
+            alt="{{ section.settings.image.alt | escape }}">
+    {%- else -%}
+      <span>
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      </span>
+    {%- endif -%}
+    {%- if section.settings.mobile_image != blank -%}
+    {%- assign mobile_img_url = section.settings.mobile_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <img class="vba-hero-image mobile lazyload lazypreload"
+            data-src="{{ mobile_img_url }}"
+            data-widths="[180, 360, 470, 600, 770, 970, 1060, 1280, 1512, 1728, 2048]"
+            data-aspectratio="{{ section.settings.mobile_image.aspect_ratio }}"
+            data-sizes="auto"
+            alt="{{ section.settings.mobile_image.alt | escape }}">
+    {%- else -%}
+      <span>
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      </span>
+    {%- endif -%}
+  </div>
+  <div class="hero-overlay__wrapper overlay-align--{{section.settings.overlay_position}}">
+    <div class="overlay-content">
+      <div class="overlay align-{{section.settings.overlay_position}}">
+        <h3 class="hero-title">{{section.settings.title}}</h3>
+        <p class="hero-content">{{section.settings.content}}</p>
+        <a href="{{section.settings.btn_link}}" class="hero-btn">{{section.settings.btn_label}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% style %}
+  {{section.settings.overlay_font | font_modify: 'weight', '300' | font_face}}
+  {{section.settings.overlay_font | font_modify: 'weight', 'normal' | font_face}}
+  {{section.settings.overlay_font | font_modify: 'weight', 'bold' | font_face}}
+  [data-section-type="vba-test-new-hero"] .hero-title, [data-section-type="vba-test-new-hero"] .hero-content, [data-section-type="vba-test-new-hero"] .hero-btn{
+    font-family: {{section.settings.overlay_font.family}}, {{section.settings.overlay_font.fallback_families}};
+  }
+{% endstyle %}
+{% schema %}
+{
+    "name":"VBA testing hero",
+    "settings":[
+        {
+          "type":"image_picker",
+          "id":"image",
+          "label":"Hero Image"  
+        },
+        {
+          "type":"image_picker",
+          "id":"mobile_image",
+          "label":"Mobile Image"
+        },
+        {
+          "type":"color",
+          "id":"text_color",
+          "label":"Color Picker"
+        },
+        {
+          "type":"select",
+          "id":"overlay_position",
+          "label":"Text Alignment",
+          "options":[
+            {
+              "value":"left",
+              "label":"Left"
+            },
+            {
+              "value":"right",
+              "label":"Right"
+            },
+            {
+              "value":"middle",
+              "label":"Center"
+            }
+          ]
+        },
+        {
+          "type":"font_picker",
+          "id":"overlay_font",
+          "label":"Font",
+          "default":"roboto_n4"
+        },
+        {
+          "type":"text",
+          "id":"title",
+          "label":"Title",
+          "default":"Hero Title"
+        },
+        {
+          "type":"textarea",
+          "id":"content",
+          "label":"Copy"
+        },
+        {
+          "type":"text",
+          "id":"btn_label",
+          "label":"CTA Text",
+          "default":"Read More"
+        },
+        {
+          "type":"url",
+          "id":"btn_link",
+          "label":"CTA URL"
+        }
+    ],
+    "presets":[
+        {
+          "name":"VBA Hero",
+          "category":"Image"
+        }
+    ]
+}
+{% endschema %}

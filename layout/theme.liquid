@@ -144,6 +144,9 @@
     document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
   </script>
 
+<!-- Include custom style by Paul 22/01/2020 -->
+{{'vba-custom.scss.css' | asset_url | stylesheet_tag}}
+<!-- End including custom style -->
   {%- if request.page_type contains 'customers/' -%}
     <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
   {%- endif -%}
